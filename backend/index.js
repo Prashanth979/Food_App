@@ -1,6 +1,9 @@
 console.log("hello World");
 
-const express = require('express');
+const express = require('express')
+//importing cors
+const cors = require('cors')
+
 // const { getdishes } = require('./controllers/dishesController');
 const app = express()
 //Using Controllers
@@ -10,12 +13,17 @@ const app = express()
 const dishes = require("./routes/dishesRoutes")
 const registerUser = require("./routes/userRoutes")
 
+
 //connecting the mongoose to the backend
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://127.0.0.1:27017/FoodAppDB')
+//server running on mongodb localhost
+// mongoose.connect('mongodb://127.0.0.1:27017/FoodAppDB')
+//server running on cloud
+mongoose.connect('mongodb+srv://prashanthnani416:gGiCQ5lfY2x07hOX@cluster0.atch9.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
   .then(() => console.log('Connected!'));
 
 const port = 5001
+app.use(cors())
 app.use(express.json())
 
 //Middleware use case
